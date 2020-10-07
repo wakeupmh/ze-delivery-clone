@@ -1,0 +1,18 @@
+FROM node:12-alpine
+
+ARG PROJECT_NAME
+ARG VERSION
+ARG REVISION
+
+ENV PROJECT_NAME $PROJECT_NAME
+ENV VERSION $VERSION
+ENV REVISION $REVISION
+
+WORKDIR /app
+COPY . .
+
+RUN npm install --production
+
+ENTRYPOINT [ "npm" ]
+
+CMD [ "run", "start" ]

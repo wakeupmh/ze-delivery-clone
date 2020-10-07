@@ -1,0 +1,75 @@
+{
+  "name": "ze-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:api": "node src/bin/server/index.js",
+    "debug:api": "nodemon src/bin/server/index.js",
+    "cz": "git-cz",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix .",
+    "cover": "c8 --reporter=json-summary --reporter=html npm run test:unit",
+    "check-coverage": "c8 check-coverage --lines 90 --functions 90 --branches 90",
+    "test:unit": "mocha --require esm --require test/setup.js --slow 5000 test/unit/**/*.spec.js --exit",
+    "make-badges": "istanbul-badges-readme"
+  },
+  "repository": "https://github.com/wakeupmh/ze-challenge.git",
+  "author": "marcos henrique <devopmh@gmail.com>",
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "_moduleAliases": {
+    "@ze": "src"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint --fix",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "c8": "^7.1.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-no-secrets": "^0.6.8",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "istanbul-badges-readme": "^1.0.4",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.4",
+    "sinon": "^9.0.2",
+    "standard-version": "^8.0.0"
+  },
+  "dependencies": {
+    "@godaddy/terminus": "^4.4.1",
+    "@hapi/boom": "^9.1.0",
+    "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
+    "date-fns": "^2.14.0",
+    "dotenv": "^8.2.0",
+    "elastic-apm-node": "^3.6.1",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-decorator-router": "^0.1.1",
+    "helmet": "^3.22.0",
+    "http-errors": "^1.8.0",
+    "module-alias": "^2.2.2",
+    "pg": "^8.4.0",
+    "sequelize": "^6.3.5",
+    "winston": "^3.2.1",
+    "yup": "^0.29.1"
+  }
+}
