@@ -25,12 +25,12 @@ const findNearestPartner = ({ request, response }) => {
     .then(createSimpleReponse(response))
 }
 
-export default controller('/partner')({
+export default controller('/partner', partnerMiddlewareInjector)({
   createPartner,
   findPartnerById,
   findNearestPartner
 }, {
-  createPartner: post(celebrate(schema), partnerMiddlewareInjector),
-  findPartnerById: get('/:id', partnerMiddlewareInjector),
-  findNearestPartner: get(partnerMiddlewareInjector)
+  createPartner: post(celebrate(schema)),
+  findPartnerById: get('/:id'),
+  findNearestPartner: get()
 })
