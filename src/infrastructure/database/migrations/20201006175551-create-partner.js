@@ -9,19 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       tradingName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       ownerName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       document: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       coverageArea: {
-        type: Sequelize.GEOMETRY
+        type: Sequelize.GEOMETRY,
+        allowNull: false
       },
       address: {
-        type: Sequelize.GEOMETRY
+        type: Sequelize.GEOMETRY,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

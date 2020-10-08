@@ -1,28 +1,20 @@
 import { createLog, database } from '@ze/infrastructure'
 import {
-  partnerServiceFactory,
-  schema
+  partnerServiceFactory
 } from '@ze/core'
-export const partnerMiddlewareInjector = (req, _, next) => {
-  const commomInjections = {
-    database,
-    Logger: createLog('partner')
-  }
 
+export const partnerMiddlewareInjector = (req, _, next) => {
   const {
+    findPartnerById,
+    findNearestPartner,
     createPartner
   } = partnerServiceFactory({
-    ...commomInjections,
-    schema
+    database,
+    Logger: createLog('partner')
   })
 
-  const {
-    findPatnerById,
-    findNearestPartner
-  } = partnerServiceFactory({ ...commomInjections })
-
   req.createPartner = createPartner
-  req.findPatnerById = findPatnerById
+  req.findPartnerById = findPartnerById
   req.findNearestPartner = findNearestPartner
 
   next()

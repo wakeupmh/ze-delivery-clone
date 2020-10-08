@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start:api": "node src/bin/server/index.js",
-    "debug:api": "nodemon src/bin/server/index.js",
+    "debug:api": "nodemon --inspect src/bin/server/index.js",
     "cz": "git-cz",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint --fix .",
@@ -26,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "pre-commit": "npm run lint:fix",
       "pre-push": "npm run lint --fix",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
@@ -57,6 +57,7 @@
     "@godaddy/terminus": "^4.4.1",
     "@hapi/boom": "^9.1.0",
     "bluebird": "^3.7.2",
+    "celebrate": "^13.0.3",
     "cors": "^2.8.5",
     "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
@@ -66,10 +67,10 @@
     "express-decorator-router": "^0.1.1",
     "helmet": "^3.22.0",
     "http-errors": "^1.8.0",
+    "joi": "^17.2.1",
     "module-alias": "^2.2.2",
     "pg": "^8.4.0",
     "sequelize": "^6.3.5",
-    "winston": "^3.2.1",
-    "yup": "^0.29.1"
+    "winston": "^3.2.1"
   }
 }
