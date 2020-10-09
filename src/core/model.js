@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     tradingName: DataTypes.STRING,
     ownerName: DataTypes.STRING,
     document: DataTypes.STRING,
-    coverageArea: DataTypes.GEOMETRY('POLYGON'),
-    address: DataTypes.GEOMETRY('POINT')
+    coverageArea: DataTypes.GEOMETRY('MULTIPOLYGON', 4326),
+    address: DataTypes.GEOMETRY('POINT', 4326)
   }, {
     sequelize,
     modelName: 'Partner'
