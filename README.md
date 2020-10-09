@@ -4,23 +4,30 @@
 | ------------------------- | ----------------------- | ------------------------ | -------------------- |
 | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) |
 
-## Resumo
-
-
 ## Instalação
 
-Assumindo que o **yarn** é utilizado, do contrário, instale com o **npm** executando o comando `npm run install`.
-
-```bash
-yarn install
-```
+Instale com o **npm** executando o comando `npm run install`.
 
 ## Desenvolvimento local
+A aplicação possui o banco rodando em um container, por isso é necessário a instalação do *Docker* para a utilização do mesmo pelo comando:
+
+```bash
+  docker-compose up
+```
+Feito isto é necessário rodar as *migrations*, para isto é necessário ter o *sequelize-cli* instalado.
+
+```bash
+npm install --save-dev sequelize-cli
+```
+Após esta instalação utilize o comando para realizar as *migrations*:
+```bash
+npx sequelize-cli db:migrate
+```
 
 Execute o comando abaixo para executar a API.
 
 ```bash
-yarn debug
+yarn debug:api
 ```
 
 ## Contribuindo
