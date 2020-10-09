@@ -16,9 +16,11 @@
         {
           "type": "node",
           "request": "launch",
-          "name": "Zé - Mocha Tests",
+          "name": "Mocha Tests",
           "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
           "args": [
+            "--require",
+            "esm",
             "--require",
             "${workspaceFolder}/test/setup.js",
             "--reporter",
@@ -26,8 +28,7 @@
             "--slow",
             "5000",
             "--colors",
-            "${workspaceFolder}/test/**/*.spec.js",
-    
+            "${workspaceFolder}/test/unit/**/*.spec.js",
           ],
           "internalConsoleOptions": "openOnSessionStart",
           "skipFiles": [
