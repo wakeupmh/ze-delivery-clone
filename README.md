@@ -19,8 +19,26 @@ Feito isto é necessário rodar as *migrations*, para isto é necessário ter o 
 ```bash
 npm install --save-dev sequelize-cli
 ```
-Após esta instalação utilize o comando para realizar as *migrations*:
+
+Primeiro vá até o caminho `src/config/database.js` e substitua os campos:
+  * host
+  * database
+  * username
+  * password
+
+com os valores:
+```json
+  host: '127.0.0.1',
+  dialect: 'postgres',
+  database: 'ze',
+  username: 'postgres',
+  password: 'pg@123'
+``` 
+Isto é necessário para fazer funcionar as *migrations*, visto que o **sequelize-cli** não reconhece o env.
+
+Após a instalação do **sequelize-cli** e a substituiçao dos campos, utilize o comando para realizar as *migrations*:
 ```bash
+npx sequelize-cli db:create
 npx sequelize-cli db:migrate
 ```
 
@@ -29,6 +47,9 @@ Execute o comando abaixo para executar a API.
 ```bash
 npm run debug:api
 ```
+
+## Deploy
+Para realizar o deploy basta fazer um push na master ou mergear um pull request na mesma, esta configurado um github action que faz deploy no heroku
 
 ## Contribuindo
 
@@ -45,7 +66,7 @@ npm run debug:api
 
 ## Testes unitários
 
-- O projeto faz uso dos testes unitários com um mínimo de 90% de cobertura de código.
+- O projeto faz uso dos testes unitários com um mínimo de 90% de cobertura de código sobre o serviço.
 
 ## Controle de versão
 
@@ -59,3 +80,7 @@ npm run debug:api
 - Neste momento a versão no _package.json_ foi atualizada, a tag de versão foi criada seguindo o prefixo `tag-version-prefix="release-"` e o _[CHANGELOG.md](CHANGELOG.md)_ também é incrementado contendo os _fixes_ e _features_.
 
 - [CHANGELOG](CHANGELOG.md)
+
+# Misc
+Sobre o framework utilizado para injeção de dependência **expres-decorator-router** e abstração do
+arquivo de rotas este é um [artigo](https://dev.to/wakeupmh/decouple-your-express-applications-using-the-amazing-express-decorator-router-35p2) que falo um pouco sobre o beneficio do mesmo e um detalhe legal é que este esta listado no [awesome-express](https://github.com/rajikaimal/awesome-express) na categoria de **middleware**.
