@@ -1,7 +1,11 @@
 import Bluebird from 'bluebird'
+import celebrate from 'celebrate'
 import { controller, post, get } from 'express-decorator-router'
 import { partnerMiddlewareInjector } from '@ze/infrastructure/server/middlewares/middleware-container'
 import { createSimpleReponse } from '@ze/infrastructure/server/response'
+import { schema } from './schema'
+
+const { celebrate: schemaValidation } = celebrate
 
 const createPartner = ({ request, response }) => {
   const { body, createPartner } = request
@@ -11,9 +15,8 @@ const createPartner = ({ request, response }) => {
 }
 
 const findPartnerById = ({ request, response }) => {
-  const { body, findPartnerById } = request
-  return Bluebird.resolve(body)
-    .then(findPartnerById)
+  const { findPartnerById, params: { id } } = request
+  return Bluebird.resolve(findPartnerById(id))
     .then(createSimpleReponse(response))
 }
 
@@ -24,12 +27,12 @@ const findNearestPartner = ({ request, response }) => {
     .then(createSimpleReponse(response))
 }
 
-export default controller('/partner')({
+export default controller('/partner', partnerMiddlewareInjector)({
   createPartner,
   findPartnerById,
   findNearestPartner
 }, {
-  createPartner: post(partnerMiddlewareInjector),
-  findPartnerById: get('/:id', partnerMiddlewareInjector),
-  findNearestPartner: get(partnerMiddlewareInjector)
+  createPartner: post(schemaValidation(schema)),
+  findPartnerById: get('/:id'),
+  findNearestPartner: get()
 })

@@ -2,14 +2,13 @@ import { apm } from '@ze/infrastructure'
 import cors from 'cors'
 import helmet from 'helmet'
 import express from 'express'
-
+import { errors } from 'celebrate'
 import { resolve } from 'path'
 import { useControllers } from 'express-decorator-router'
 import {
   errorHandler,
   notFoundHandler,
-  validationErrorHandler,
-  schemaValidation
+  validationErrorHandler
 } from './middlewares'
 
 const app = express()
@@ -28,7 +27,7 @@ app.use('/v1/api', useControllers({
   controllerExpression: `${resolve('src')}/**/controller.js`
 }))
 
-app.use(schemaValidation)
+app.use(errors())
 app.use(notFoundHandler)
 app.use(validationErrorHandler)
 
