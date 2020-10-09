@@ -6,9 +6,17 @@ export default ({
 }) => {
   const createPartner = body => {
     return Bluebird.resolve(database.bootstrap())
-      .then(() => database.Partner.create({ ...body }))
-      .tap(response => {
-        Logger.info(`Created register with ${response}`)
+      .then(() => database.Partner.findOrCreate({
+        where: { document: body.document },
+        defaults: { ...body }
+      }))
+      .then(response => {
+        const [model, register] = response
+        if (register) {
+          Logger.info(`Created register with ${response}`)
+          return model
+        }
+        return false
       })
   }
 
@@ -17,7 +25,7 @@ export default ({
       .then(() => database.Partner.findOne({ where: { id } }))
       .tap(partner => {
         if (partner) {
-          Logger.info('Finded register')
+          Logger.info('Found register')
         }
 
         Logger.warn('Not found register')
@@ -39,7 +47,7 @@ export default ({
       })
       .tap(partner => {
         if (partner) {
-          Logger.info('Finded register')
+          Logger.info('Found register')
         }
 
         Logger.warn('Not found register')
