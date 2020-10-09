@@ -2,7 +2,7 @@ import celebrate from 'celebrate'
 import { controller, post, get } from 'express-decorator-router'
 import { partnerMiddlewareInjector } from '@ze/infrastructure/server/middlewares/middleware-container'
 import { handleResponse, handleCreatedResponse } from '@ze/infrastructure/server/response'
-import { schema } from './schema'
+import { createPartnerSchema, findNearestPartnerSchema } from './schema'
 
 const { celebrate: schemaValidation } = celebrate
 
@@ -33,7 +33,7 @@ export default controller('/partner', partnerMiddlewareInjector)({
   findPartnerById,
   findNearestPartner
 }, {
-  createPartner: post(schemaValidation(schema)),
+  createPartner: post(schemaValidation(createPartnerSchema)),
   findPartnerById: get('/:id'),
-  findNearestPartner: get()
+  findNearestPartner: get(schemaValidation(findNearestPartnerSchema))
 })

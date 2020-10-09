@@ -1,5 +1,13 @@
 import Bluebird from 'bluebird'
 
+const logIfExists = (partner, Logger) => {
+  if (partner) {
+    Logger.info('Found register')
+  } else {
+    Logger.warn('Not found register')
+  }
+}
+
 export default ({
   database,
   Logger
@@ -24,11 +32,7 @@ export default ({
     return Bluebird.resolve(database.bootstrap())
       .then(() => database.Partner.findOne({ where: { id } }))
       .tap(partner => {
-        if (partner) {
-          Logger.info('Found register')
-        }
-
-        Logger.warn('Not found register')
+        logIfExists(partner, Logger)
       })
   }
 
@@ -46,11 +50,7 @@ export default ({
           LIMIT 1;`)
       })
       .tap(partner => {
-        if (partner) {
-          Logger.info('Found register')
-        }
-
-        Logger.warn('Not found register')
+        logIfExists(partner, Logger)
       })
   }
 
