@@ -27,7 +27,7 @@ npx sequelize-cli db:migrate
 Execute o comando abaixo para executar a API.
 
 ```bash
-yarn debug:api
+npm run debug:api
 ```
 
 ## Contribuindo
