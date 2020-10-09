@@ -1,13 +1,9 @@
 module.exports = Object.freeze({
-  host: '127.0.0.1',
+  host: process.env.DATABASE_HOST,
   dialect: 'postgres',
-  database: 'ze',
-  username: 'postgres',
-  password: 'pg@123',
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASS,
   port: 5432,
   logging: false
-  // ssl: true,
-  // dialectOptions: {
-  //   ssl: true
-  // }
 })
