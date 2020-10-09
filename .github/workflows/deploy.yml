@@ -18,6 +18,7 @@ jobs:
           npm run test:unit
           
   build:
+    needs: test
     runs-on: ubuntu-latest
     env:
       DATABASE_USER: ${{secrets.DATABASE_USER}}
