@@ -1,9 +1,8 @@
 # ze-challenge
 
-| Statements                                    | Branches                                  | Functions                                   | Lines                               |
-| --------------------------------------------- | ----------------------------------------- | ------------------------------------------- | ----------------------------------- | ----------------------------------------------- |
+| Statements                | Branches                | Functions                | Lines                |
+| ------------------------- | ----------------------- | ------------------------ | -------------------- |
 | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) |
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/afb05511ab7c823d330b)
 
 ## Resumo
 
